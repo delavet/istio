@@ -325,7 +325,7 @@ func TestMultiClusterNodeAuthorization(t *testing.T) {
 			name:            "ztunnel caller from removed remote cluster",
 			callerClusterID: cluster.ID("remote2"),
 			caller:          ztunnelCallerRemote2,
-			wantErr:         "not found",
+			wantErr:         "no node authorizer",
 		},
 		{
 			name:                    "allowed identities in remote cluster, but ztunnel caller from primary cluster",

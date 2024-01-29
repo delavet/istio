@@ -75,7 +75,7 @@ func (mNa *MulticlusterNodeAuthorizor) ClusterAdded(cluster *multicluster.Cluste
 	}
 	mNa.m.Lock()
 	defer mNa.m.Unlock()
-	mNa.addCluster(cluster.ID, cluster.Client, na)
+	mNa.addCluster(cluster.ID, na)
 }
 
 func (mNa *MulticlusterNodeAuthorizor) ClusterUpdated(cluster *multicluster.Cluster, stop <-chan struct{}) {
@@ -86,7 +86,7 @@ func (mNa *MulticlusterNodeAuthorizor) ClusterUpdated(cluster *multicluster.Clus
 	mNa.m.Lock()
 	defer mNa.m.Unlock()
 	mNa.deleteCluster(cluster.ID)
-	mNa.addCluster(cluster.ID, cluster.Client, na)
+	mNa.addCluster(cluster.ID, na)
 }
 
 func (mNa *MulticlusterNodeAuthorizor) ClusterDeleted(key cluster.ID) {
@@ -95,7 +95,7 @@ func (mNa *MulticlusterNodeAuthorizor) ClusterDeleted(key cluster.ID) {
 	mNa.deleteCluster(key)
 }
 
-func (mNa *MulticlusterNodeAuthorizor) addCluster(clusterID cluster.ID, client kube.Client, na *ClusterNodeAuthorizer) {
+func (mNa *MulticlusterNodeAuthorizor) addCluster(clusterID cluster.ID, na *ClusterNodeAuthorizer) {
 	mNa.remoteNodeAuthenticators[clusterID] = na
 }
 
