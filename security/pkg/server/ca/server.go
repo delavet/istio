@@ -55,7 +55,7 @@ type Server struct {
 	ca             CertificateAuthority
 	serverCertTTL  time.Duration
 
-	nodeAuthorizer NodeAuthorizer
+	nodeAuthorizer *MulticlusterNodeAuthorizor
 }
 
 type SaNode struct {
